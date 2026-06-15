@@ -31,6 +31,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import NGOVerificationForm from './pages/NGOVerificationForm';
 import NGOPayment from './pages/NGOPayment';
+import DonateFunds from './pages/DonateFunds';
 
 
 const App: React.FC = () => {
@@ -237,6 +238,8 @@ const App: React.FC = () => {
         return <Login onLogin={handleRoleChange} onNavigate={handleNavigate} />;
       case 'signup':
         return <Signup onSignup={handleRoleChange} onNavigate={handleNavigate} />;
+      case 'donate-funds':
+        return <DonateFunds onNavigate={handleNavigate} />;
       case 'donor-dashboard':
         return <DonorDashboard userName={userName} onNavigate={handleNavigate} />;
       case 'donor-donations':

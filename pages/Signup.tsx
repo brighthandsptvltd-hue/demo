@@ -21,6 +21,16 @@ const Signup: React.FC<SignupProps> = ({ onSignup, onNavigate }) => {
   const [coords, setCoords] = useState<{ lat: number, lng: number } | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  const getReadableSignupError = (err: any) => {
+    const message = err?.message || '';
+
+    if (message === 'Failed to fetch' || err instanceof TypeError) {
+      return 'We could not reach the account service. Please try again in a moment. If this keeps happening, check the production API configuration.';
+    }
+
+    return message || 'An error occurred during signup';
+  };
+
   const handleGetCurrentLocation = () => {
     if (!navigator.geolocation) {
       setError('Geolocation is not supported by your browser');
@@ -90,7 +100,7 @@ const Signup: React.FC<SignupProps> = ({ onSignup, onNavigate }) => {
         onSignup(role);
       }
     } catch (err: any) {
-      setError(err.message || 'An error occurred during signup');
+      setError(getReadableSignupError(err));
     } finally {
       setLoading(false);
     }

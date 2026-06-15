@@ -33,6 +33,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 }) => {
   const donorLinks: SidebarLink[] = [
     { id: 'donor-dashboard', icon: 'grid_view', label: 'Dashboard' },
+    { id: 'donate-funds', icon: 'payments', label: 'Fund NGOs' },
     { id: 'donor-donations', icon: 'inventory_2', label: 'My Donations' },
     { id: 'donor-requests', icon: 'volunteer_activism', label: 'NGO Requests' },
     { id: 'donor-nearby', icon: 'location_on', label: 'Nearby NGOs' },

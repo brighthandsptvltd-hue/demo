@@ -97,6 +97,12 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, role, onSetRole, onNavigate
               >
                 Impact
               </button>
+              <button
+                onClick={() => onNavigate('donate-funds')}
+                className="text-sm font-bold text-brand-muted hover:text-primary transition-colors"
+              >
+                Donate Funds
+              </button>
             </>
           )}
         </nav>

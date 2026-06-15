@@ -15,6 +15,20 @@ const Login: React.FC<LoginProps> = ({ onLogin, onNavigate }) => {
   const [error, setError] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
 
+  const getReadableAuthError = (err: any) => {
+    const message = err?.message || '';
+
+    if (message === 'Failed to fetch' || err instanceof TypeError) {
+      return 'We could not reach the sign-in service. Please try again in a moment. If this keeps happening, check the production API configuration.';
+    }
+
+    if (message.toLowerCase().includes('invalid login credentials')) {
+      return 'Incorrect email or password. Please check your credentials and try again.';
+    }
+
+    return message || 'Unable to sign in right now. Please try again.';
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -51,7 +65,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, onNavigate }) => {
         onLogin(userRole);
       }
     } catch (err: any) {
-      setError(err.message || 'Invalid email or password');
+      setError(getReadableAuthError(err));
     } finally {
       setLoading(false);
     }
